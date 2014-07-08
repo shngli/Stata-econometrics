@@ -1,0 +1,45 @@
+---------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  M:\Private\GSI W11\Section 5\r2exercise.log
+  log type:  text
+ opened on:  20 Feb 2011, 13:55:06
+
+.  *YOU CAN GET R2 BY USING THE regress COMMAND;
+. reg hrlyearn educ, r;
+
+Linear regression                                      Number of obs =    2
+> 950
+                                                       F(  1,  2948) =  415
+> .76
+                                                       Prob > F      =  0.0
+> 000
+                                                       R-squared     =  0.1
+> 304
+                                                       Root MSE      =  8.7
+> 694
+
+---------------------------------------------------------------------------
+> ---
+             |               Robust
+    hrlyearn |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interv
+> al]
+-------------+-------------------------------------------------------------
+> ---
+        educ |   1.466925   .0719423    20.39   0.000     1.325863    1.607
+> 988
+       _cons |  -3.134371   .9258849    -3.39   0.001    -4.949818   -1.318
+> 925
+---------------------------------------------------------------------------
+> ---
+
+. *TO CALCULATE THE R2 "BY HAND", YOU NEED TO CREATE CONTAINING THE PREDICT
+> ED OUTCOME AND THE RESIDUAL;
+. predict y_hat;
+(option xb assumed; fitted values)
+
+. predict u_hat, residual;
+
+. * see calculations on the Excel document;
+. 
+end of do-file
+

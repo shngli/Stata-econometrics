@@ -1,0 +1,77 @@
+-----------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  M:/Private/GSI W11/section4.log
+  log type:  text
+ opened on:  13 Feb 2011, 18:12:42
+
+. *Question 1 : Run the regression of unionization rate on firm size;
+. reg union empsize, r;
+
+Linear regression                                      Number of obs =    1000
+                                                       F(  1,   998) =   52.79
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0427
+                                                       Root MSE      =   .3713
+
+------------------------------------------------------------------------------
+             |               Robust
+       union |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     empsize |    .000142   .0000195     7.27   0.000     .0001037    .0001804
+       _cons |   .0707241   .0140366     5.04   0.000     .0431794    .0982688
+------------------------------------------------------------------------------
+
+. *ANSWER/ SLOPE A 1,000-employee increase in firm size is associated with a 0.14 percent
+> age point increase in unionization rate./ INTERCEPT : Our model predicts on average fir
+> m with no employee would have 7% of its employees covered by unions, but this does not 
+> make any sense from a policy perspective;
+. twoway (scatter union empsize) (lfit union empsize);
+
+. * QUESTION 2;
+. * ANSWER : When testing the null that the population slope is equal to 0 against the al
+> ternative that it is not, we obtain a t-statistic of 7.27. Since t is higher that 1.96 
+> in absolute value, we can reject our null at the 95% level of confidence and conclude t
+> hat the relationship between unionization rate and firm size is statistically significa
+> nt at the 95% level of confidence.  
+> * QUESTION 3;
+. sum union, d;
+
+                = 1 if in or covered by union
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%            0              0
+10%            0              0       Obs                1000
+25%            0              0       Sum of Wgt.        1000
+
+50%            0                      Mean               .174
+                        Largest       Std. Dev.      .3792992
+75%            0              1
+90%            1              1       Variance       .1438679
+95%            1              1       Skewness        1.71982
+99%            1              1       Kurtosis        3.95778
+
+. * ANSWER: The standard deviation of union is 0.379. Then a 1,000-employee increase in f
+> irn szie is associated with an increase in unionization rate of 0.36 of a standard devi
+> ation. Given the large increase we consider in firm size can be considered, it looks qu
+> ite small from a policy perspective;
+.  * QUESTION 4;
+. reg union manager,r;
+
+Linear regression                                      Number of obs =    1000
+                                                       F(  1,   998) =    6.25
+                                                       Prob > F      =  0.0125
+                                                       R-squared     =  0.0041
+                                                       Root MSE      =  .37871
+
+------------------------------------------------------------------------------
+             |               Robust
+       union |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     manager |   -.083892   .0335458    -2.50   0.013    -.1497203   -.0180636
+       _cons |   .1817181   .0128098    14.19   0.000     .1565808    .2068553
+------------------------------------------------------------------------------
+
+. 
+end of do-file
+
