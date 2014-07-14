@@ -7,4 +7,3 @@ Stata and Statistical Analysis
    * **OpenIntro Statistics (2nd Edition)** by David M Diez, Christopher D Barr, and Mine Çetinkaya-Rundel
    * **Introduction to Econometrics (3rd Edition)** by James Stock and Mark Watson
 
-Materials in this repository were prepared by **Kevin Stange** and **Justin Thomas** for Ford School of Public Policy's Econometric course.
