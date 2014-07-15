@@ -32,13 +32,13 @@
 > t that you could use to answer it?
 > 
 > * Answer3: 
-> * What is the effect of school district spending on students’ test scores?
+> * What is the effect of school district spending on studentsï¿½ test scores?
 > * To answer this, the Federal government could randomly select some districts 
 > (the treatment group) to receive large grants that would enable them to increa
 > se spending.
 > * The spending in other districts (the control group) would be held fixed at i
 > ts level prior to the experiment.
-> * Students’ test scores in each district would be assessed prior to randomizat
+> * Studentsï¿½ test scores in each district would be assessed prior to randomizat
 > ion and also several times afterwards.
 > * The effect of district spending on test scores can be estimated by comparing
 >  the test score difference between the two groups sometime after the grants we
@@ -169,6 +169,6 @@ Ho: diff = 0                                     degrees of freedom =      418
 
 . log close;
       name:  <unnamed>
-       log:  C:\Users\chisli\Desktop\solution1.log
+       log:  \Desktop\solution1.log
   log type:  text
 --------------------------------------------------------------------------------
