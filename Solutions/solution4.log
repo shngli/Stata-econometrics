@@ -1,0 +1,370 @@
+--------------------------------------------------------------------------------
+      name:  <Chisheng Li>
+       log:  \Desktop\solution4.log
+  log type:  text
+ opened on:  15 Jul 2014, 14:55:33
+
+. * Load dataset;
+. use "\Desktop\wvs_micro.dta";
+
+. desc;
+
+Contains data from \Desktop\wvs_micro.dta
+  obs:        17,518                          
+ vars:            39                          7 Mar 2010 23:01
+ size:     1,243,778                          
+--------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+--------------------------------------------------------------------------------
+country         int     %8.0g      s003       country/region
+year            int     %8.0g      s020       year survey
+countryyear     long    %12.0g     s025       country - year
+age             byte    %8.0g      x003       age
+educ            byte    %8.0g      x025       highest educational level attained
+townsizeg       byte    %8.0g      x049       size of town
+envir           float   %9.0g                 Support for tax increase to fund
+                                                pollution reduction
+womenwork       float   %9.0g                 Agree that working mother can be
+                                                good parent
+educ_nohs       float   %9.0g                 Did not complete secondary
+                                                education
+educ_hs         float   %9.0g                 Completed secondary education, no
+                                                college
+educ_coll       float   %9.0g                 Obtained some postsecondary
+                                                education
+townsize        float   %9.0g                 size of town, 1000
+tvhours         float   %9.0g                 Number of hours spent watching TV
+                                                daily
+tvany           float   %9.0g                 Watch any TV
+male            float   %9.0g                  1 = male, 0 = female
+c_1             byte    %8.0g                 country=="albania"
+c_2             byte    %8.0g                 country=="bosnia and herzegovina"
+c_3             byte    %8.0g                 country=="bulgaria"
+c_4             byte    %8.0g                 country=="belarus"
+c_5             byte    %8.0g                 country=="hungary"
+c_6             byte    %8.0g                 country=="latvia"
+c_7             byte    %8.0g                 country=="lithuania"
+c_8             byte    %8.0g                 country=="moldova"
+c_9             byte    %8.0g                 country=="poland"
+c_10            byte    %8.0g                 country=="romania"
+c_11            byte    %8.0g                 country=="russian federation"
+c_12            byte    %8.0g                 country=="slovakia"
+c_13            byte    %8.0g                 country=="slovenia"
+c_14            byte    %8.0g                 country=="ukraine"
+c_15            byte    %8.0g                 country=="macedonia"
+c_16            byte    %8.0g                 country=="serbia and montenegro"
+size_1          byte    %8.0g                 townsize== 1.5000
+size_2          byte    %8.0g                 townsize== 3.5000
+size_3          byte    %8.0g                 townsize== 7.5000
+size_4          byte    %8.0g                 townsize== 15.0000
+size_5          byte    %8.0g                 townsize== 35.0000
+size_6          byte    %8.0g                 townsize== 75.0000
+size_7          byte    %8.0g                 townsize== 300.0000
+size_8          byte    %8.0g                 townsize== 500.0000
+--------------------------------------------------------------------------------
+Sorted by:  
+
+. * =================================================;
+. * Chisheng Li Solution 4
+> * =================================================;
+. * =================================================;
+. * Part I - regressions with micro data
+> * =================================================;
+. reg envir tvhours, robust;
+
+Linear regression                                      Number of obs =   17518
+                                                       F(  1, 17516) =   56.05
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0033
+                                                       Root MSE      =   .8609
+
+------------------------------------------------------------------------------
+             |               Robust
+       envir |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |    .045008   .0060117     7.49   0.000     .0332245    .0567916
+       _cons |   2.568826   .0156329   164.32   0.000     2.538183    2.599468
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4a.xls", adjr2 replace;
+c:\ado\plus/o/outreg2.ado
+\Desktop\solution4a.xls
+dir : seeout
+
+. outreg2 using "\Desktop\solution4c.xls", adjr2 replace;
+\Desktop\solution4c.xls
+dir : seeout
+
+. reg envir tvhours educ_hs educ_coll, robust;
+
+Linear regression                                      Number of obs =   17518
+                                                       F(  3, 17514) =  107.91
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0184
+                                                       Root MSE      =  .85441
+
+------------------------------------------------------------------------------
+             |               Robust
+       envir |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |   .0412061   .0059852     6.88   0.000     .0294746    .0529377
+     educ_hs |   .1666083   .0149291    11.16   0.000     .1373458    .1958707
+   educ_coll |   .2915593   .0183651    15.88   0.000     .2555618    .3275568
+       _cons |   2.440301   .0177687   137.34   0.000     2.405473     2.47513
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4a.xls", adjr2 append;
+\Desktop\solution4a.xls
+dir : seeout
+
+. reg envir tvhours educ_hs educ_coll age, robust;
+
+Linear regression                                      Number of obs =   17518
+                                                       F(  4, 17513) =   89.83
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0200
+                                                       Root MSE      =  .85374
+
+------------------------------------------------------------------------------
+             |               Robust
+       envir |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |   .0412715   .0059802     6.90   0.000     .0295497    .0529932
+     educ_hs |   .1411468   .0157906     8.94   0.000     .1101957     .172098
+   educ_coll |   .2687263   .0189765    14.16   0.000     .2315305     .305922
+         age |  -.0022797   .0004332    -5.26   0.000    -.0031288   -.0014306
+       _cons |   2.555621      .0285    89.67   0.000     2.499758    2.611484
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4a.xls", adjr2 append;
+\Desktop\solution4a.xls
+dir : seeout
+
+. reg envir tvhours educ_hs educ_coll age male, robust;
+
+Linear regression                                      Number of obs =   17518
+                                                       F(  5, 17512) =   72.77
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0202
+                                                       Root MSE      =  .85367
+
+------------------------------------------------------------------------------
+             |               Robust
+       envir |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |   .0413296   .0059799     6.91   0.000     .0296085    .0530507
+     educ_hs |   .1413356   .0157896     8.95   0.000     .1103865    .1722848
+   educ_coll |   .2684601   .0189783    14.15   0.000     .2312608    .3056594
+         age |  -.0022888   .0004332    -5.28   0.000    -.0031378   -.0014397
+        male |  -.0261305    .012964    -2.02   0.044    -.0515412   -.0007199
+       _cons |   2.568113   .0291615    88.07   0.000     2.510954    2.625272
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4a.xls", adjr2 append;
+\Desktop\solution4a.xls
+dir : seeout
+
+. reg envir tvhours educ_hs educ_coll age male townsize, robust;
+
+Linear regression                                      Number of obs =   17518
+                                                       F(  6, 17511) =   60.64
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0202
+                                                       Root MSE      =  .85369
+
+------------------------------------------------------------------------------
+             |               Robust
+       envir |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |   .0415106     .00601     6.91   0.000     .0297304    .0532908
+     educ_hs |   .1421197   .0160324     8.86   0.000     .1106947    .1735448
+   educ_coll |   .2699705   .0196224    13.76   0.000     .2315086    .3084324
+         age |  -.0022795    .000434    -5.25   0.000    -.0031302   -.0014288
+        male |  -.0262702   .0129651    -2.03   0.043    -.0516831   -.0008572
+    townsize |  -.0000108   .0000356    -0.30   0.762    -.0000805     .000059
+       _cons |   2.568179   .0291627    88.06   0.000     2.511018    2.625341
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4a.xls", adjr2 append;
+\Desktop\solution4a.xls
+dir : seeout
+
+. reg womenwork tvhours, robust;
+
+Linear regression                                      Number of obs =   17518
+                                                       F(  1, 17516) =   17.27
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0010
+                                                       Root MSE      =  .86619
+
+------------------------------------------------------------------------------
+             |               Robust
+   womenwork |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |   .0251987   .0060634     4.16   0.000     .0133139    .0370835
+       _cons |   3.031834   .0158273   191.56   0.000     3.000811    3.062857
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4b.xls", adjr2 replace;
+\Desktop\solution4b.xls
+dir : seeout
+
+. outreg2 using "\Desktop\solution4c.xls", adjr2 append;
+\Desktop\solution4c.xls
+dir : seeout
+
+. reg womenwork tvhours educ_hs educ_coll, robust;
+
+Linear regression                                      Number of obs =   17518
+                                                       F(  3, 17514) =   34.14
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0060
+                                                       Root MSE      =  .86407
+
+------------------------------------------------------------------------------
+             |               Robust
+   womenwork |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |   .0208389   .0060856     3.42   0.001     .0089105    .0327674
+     educ_hs |   .1323686   .0152433     8.68   0.000     .1024901     .162247
+   educ_coll |   .1290713   .0185859     6.94   0.000     .0926412    .1655014
+       _cons |   2.953255   .0180955   163.20   0.000     2.917786    2.988724
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4b.xls", adjr2 append;
+\Desktop\solution4b.xls
+dir : seeout
+
+. reg womenwork tvhours educ_hs educ_coll age, robust;
+
+Linear regression                                      Number of obs =   17518
+                                                       F(  4, 17513) =   28.41
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0066
+                                                       Root MSE      =  .86385
+
+------------------------------------------------------------------------------
+             |               Robust
+   womenwork |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |   .0208781   .0060836     3.43   0.001     .0089537    .0328026
+     educ_hs |    .117087   .0160754     7.28   0.000     .0855776    .1485963
+   educ_coll |   .1153672   .0191252     6.03   0.000     .0778799    .1528545
+         age |  -.0013683    .000437    -3.13   0.002    -.0022249   -.0005117
+       _cons |   3.022468   .0288041   104.93   0.000     2.966009    3.078927
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4b.xls", adjr2 append;
+\Desktop\solution4b.xls
+dir : seeout
+
+. reg womenwork tvhours educ_hs educ_coll age male, robust;
+
+Linear regression                                      Number of obs =   17518
+                                                       F(  5, 17512) =   39.64
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0113
+                                                       Root MSE      =  .86184
+
+------------------------------------------------------------------------------
+             |               Robust
+   womenwork |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |   .0211424   .0060638     3.49   0.000     .0092567     .033028
+     educ_hs |    .117945   .0160306     7.36   0.000     .0865235    .1493665
+   educ_coll |   .1141578   .0190905     5.98   0.000     .0767385    .1515771
+         age |  -.0014094   .0004362    -3.23   0.001    -.0022643   -.0005545
+        male |  -.1187484   .0130708    -9.09   0.000    -.1443684   -.0931284
+       _cons |   3.079238   .0294144   104.68   0.000     3.021583    3.136894
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4b.xls", adjr2 append;
+\Desktop\solution4b.xls
+dir : seeout
+
+. reg womenwork tvhours educ_hs educ_coll age male townsize, robust;
+
+Linear regression                                      Number of obs =   17518
+                                                       F(  6, 17511) =   36.61
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0124
+                                                       Root MSE      =  .86137
+
+------------------------------------------------------------------------------
+             |               Robust
+   womenwork |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |   .0238621   .0060805     3.92   0.000     .0119437    .0357804
+     educ_hs |   .1297291   .0162348     7.99   0.000     .0979072    .1615509
+   educ_coll |   .1368572   .0196732     6.96   0.000     .0982957    .1754187
+         age |  -.0012701   .0004366    -2.91   0.004     -.002126   -.0004142
+        male |  -.1208469   .0130657    -9.25   0.000     -.146457   -.0952368
+    townsize |  -.0001617   .0000362    -4.47   0.000    -.0002326   -.0000908
+       _cons |   3.080232   .0294167   104.71   0.000     3.022573    3.137892
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4b.xls", adjr2 append;
+\Desktop\solution4b.xls
+dir : seeout
+
+. * =================================================;
+. * Part II - regressions with collapsed data
+> * =================================================;
+. collapse (count) count=country (mean) envir women, by(tvhours);
+
+. reg envir tvhours [aweight=count], robust;
+(sum of wgt is   1.7518e+04)
+
+Linear regression                                      Number of obs =       4
+                                                       F(  1,     2) =   14.08
+                                                       Prob > F      =  0.0642
+                                                       R-squared     =  0.8268
+                                                       Root MSE      =  .03213
+
+------------------------------------------------------------------------------
+             |               Robust
+       envir |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |    .045008   .0119933     3.75   0.064    -.0065951    .0966112
+       _cons |   2.568826   .0406335    63.22   0.000     2.393994    2.743657
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4c.xls", adjr2 append;
+\Desktop\solution4c.xls
+dir : seeout
+
+. reg womenwork tvhours [aweight=count], robust;
+(sum of wgt is   1.7518e+04)
+
+Linear regression                                      Number of obs =       4
+                                                       F(  1,     2) =    5.03
+                                                       Prob > F      =  0.1541
+                                                       R-squared     =  0.6041
+                                                       Root MSE      =  .03182
+
+------------------------------------------------------------------------------
+             |               Robust
+   womenwork |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     tvhours |   .0251987   .0112354     2.24   0.154    -.0231431    .0735405
+       _cons |   3.031834   .0258628   117.23   0.000     2.920555    3.143112
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\solution4c.xls", adjr2 append;
+\Desktop\solution4c.xls
+dir : seeout
+
+. twoway scatter envir tvhours || lfit envir tvhours [aw = count] ||
+> scatter womenwork tvhours || lfit womenwork tvhours [aw = count] ||,
+> legend( lab(1 "mean(envir)") lab(2 "fit(envir)") lab(3 "mean(womenwork)") lab(
+> 4
+> "fit(womenwork)"));
+
+. *graph export graph4_1.wmf, replace;
+. log close;
+      name:  <unnamed>
+       log:  \Desktop\solution4.log
+  log type:  text
+ closed on:  15 Jul 2014, 14:55:38
+--------------------------------------------------------------------------------

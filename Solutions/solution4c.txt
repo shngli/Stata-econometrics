@@ -1,0 +1,12 @@
+	(1)	(2)	(3)	(4)
+VARIABLES	envir	womenwork	envir	womenwork
+				
+tvhours	0.0450***	0.0252***	0.0450*	0.0252
+	(0.00601)	(0.00606)	(0.0120)	(0.0112)
+Constant	2.569***	3.032***	2.569***	3.032***
+	(0.0156)	(0.0158)	(0.0406)	(0.0259)
+				
+Observations	17,518	17,518	4	4
+Adjusted R-squared	0.003	0.001	0.740	0.406
+Robust standard errors in parentheses				
+*** p<0.01, ** p<0.05, * p<0.1				
