@@ -1,0 +1,20 @@
+#delimit ;
+clear all;
+set mem 300m;
+capture log close;
+log using "\Desktop\solution3.log", text replace;
+* =================================================;
+* Chisheng Li Solution 3
+* =================================================;
+use "\Desktop\unions.dta", clear;
+regress hrwage union, robust;
+outreg2 using "\Desktop\solution3.xls", addstat(Adjusted R-squared, `e(r2_a)') replace;
+regress hrwage union age, robust;
+outreg2 using "\Desktop\solution3.xls", addstat(Adjusted R-squared, `e(r2_a)') append;
+regress hrwage union age empsize, robust;
+outreg2 using "\Desktop\solution3.xls", addstat(Adjusted R-squared, `e(r2_a)') append;
+ttest hrwage, by(manager);
+ttest union, by(manager);
+regress hrwage union age empsize manager, robust;
+outreg2 using "\Desktop\solution3.xls", addstat(Adjusted R-squared, `e(r2_a)') append;
+log close;
