@@ -4,8 +4,8 @@ set more off
 capture log close
 #delimit;
 
-use "M:\Private\Section 10\teacher_ratings.dta", clear;
-log using "M:\Private\Section 10\section 10.log", replace;
+use "\Desktop\teacher_ratings.dta", clear;
+log using "\Desktop\section 10.log", replace;
 
 /*generate log_beauty=ln(beauty);
 regress course_eval log_beauty, r;

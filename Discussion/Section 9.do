@@ -4,8 +4,8 @@ set more off
 capture log close
 #delimit;
 
-use "M:\Private\GSI W11\Section 9\teacher_ratings.dta", clear;
-log using "M:\Private\GSI W11\Section 9\section9.log", replace;
+use "\Desktop\teacher_ratings.dta", clear;
+log using "\Desktop\section9.log", replace;
 
 *Part 1;
 gen beauty_2=beauty*beauty;

@@ -1,8 +1,8 @@
------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  M:\Private\Section 10\section 10.log
+       log:  \Desktop\section 10.log
   log type:  text
- opened on:   1 Apr 2011, 11:07:46
+ opened on:  14 Jul 2014, 22:02:30
 
 . /*generate log_beauty=ln(beauty);
 > regress course_eval log_beauty, r;
@@ -100,3 +100,4 @@ log_course~l |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
 . 
 end of do-file
 
+. exit, clear

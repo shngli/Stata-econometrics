@@ -4,10 +4,9 @@ capture log close
 set more off
 #delimit;
 
-global pp639 "http://www-personal.umich.edu/~thomasjl/pp639";
-use $pp639/unions.dta;
+use "\Desktop\unions.dta";
 
-log using "M:/Private/GSI W11/section4.log", replace;
+log using "\Desktop\section4.log", replace;
 
 *Question 1 : Run the regression of unionization rate on firm size;
 reg union empsize, r;

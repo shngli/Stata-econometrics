@@ -4,9 +4,8 @@ capture log close
 set more off
 #delimit;
 
-global pp639 "http://www-personal.umich.edu/~thomasjl/pp639";
-use $pp639/unions.dta, clear;
-log using "M:\Private\Section 3\statpractice.log", replace;
+use "\Desktop\unions.dta", clear;
+log using "\Desktop\statapractice.log", replace;
 
 *Question 1; 
 summarize;

@@ -1,0 +1,129 @@
+--------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \Desktop\section7.log
+  log type:  text
+ opened on:  14 Jul 2014, 21:42:41
+
+. regress ed incomehi, r;
+
+Linear regression                                      Number of obs =    3796
+                                                       F(  1,  3794) =  179.82
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.0470
+                                                       Root MSE      =  1.7711
+
+------------------------------------------------------------------------------
+             |               Robust
+          ed |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    incomehi |   .8695741   .0648458    13.41   0.000     .7424381    .9967101
+       _cons |   13.58029   .0335697   404.54   0.000     13.51447     13.6461
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\table_section7.xls", replace adjr2;
+c:\ado\plus/o/outreg2.ado
+\Desktop\table_section7.xls
+dir : seeout
+
+. regress ed income dadcoll, r;
+
+Linear regression                                      Number of obs =    3796
+                                                       F(  2,  3793) =  221.09
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.1000
+                                                       Root MSE      =  1.7213
+
+------------------------------------------------------------------------------
+             |               Robust
+          ed |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    incomehi |   .5124547   .0678492     7.55   0.000     .3794303    .6454791
+     dadcoll |   1.115406   .0751978    14.83   0.000     .9679736    1.262838
+       _cons |   13.45718   .0339006   396.96   0.000     13.39071    13.52364
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\table_section7.xls", append adjr2;
+\Desktop\table_section7.xls
+dir : seeout
+
+. regress ed income dadcoll momcoll, r;
+
+Linear regression                                      Number of obs =    3796
+                                                       F(  3,  3792) =  168.89
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.1105
+                                                       Root MSE      =  1.7115
+
+------------------------------------------------------------------------------
+             |               Robust
+          ed |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    incomehi |     .46332   .0678918     6.82   0.000      .330212     .596428
+     dadcoll |   .9041618   .0825739    10.95   0.000     .7422683    1.066055
+     momcoll |   .6017943   .0910116     6.61   0.000     .4233579    .7802308
+       _cons |   13.43007   .0339215   395.92   0.000     13.36356    13.49657
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\table_section7.xls", append adjr2;
+\Desktop\table_section7.xls
+dir : seeout
+
+. regress ed income dadcoll momcoll female, r;
+
+Linear regression                                      Number of obs =    3796
+                                                       F(  4,  3791) =  127.57
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.1107
+                                                       Root MSE      =  1.7116
+
+------------------------------------------------------------------------------
+             |               Robust
+          ed |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    incomehi |   .4654697   .0679485     6.85   0.000     .3322506    .5986887
+     dadcoll |   .9056973   .0826534    10.96   0.000     .7436479    1.067747
+     momcoll |   .6015002   .0909781     6.61   0.000     .4231294     .779871
+      female |   .0480126    .055905     0.86   0.390    -.0615942    .1576193
+       _cons |     13.403   .0462981   289.49   0.000     13.31223    13.49377
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\table_section7.xls", append adjr2;
+\Desktop\table_section7.xls
+dir : seeout
+
+. regress ed income dadcoll momcoll female dist, r;
+
+Linear regression                                      Number of obs =    3796
+                                                       F(  5,  3790) =  104.34
+                                                       Prob > F      =  0.0000
+                                                       R-squared     =  0.1127
+                                                       Root MSE      =  1.7098
+
+------------------------------------------------------------------------------
+             |               Robust
+          ed |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    incomehi |   .4568659   .0681357     6.71   0.000     .3232798    .5904521
+     dadcoll |   .8887505   .0828697    10.72   0.000     .7262771    1.051224
+     momcoll |   .5941529    .090951     6.53   0.000     .4158352    .7724707
+      female |   .0464585   .0558438     0.83   0.405    -.0630283    .1559453
+        dist |  -.0385288   .0127454    -3.02   0.003    -.0635173   -.0135402
+       _cons |   13.47722   .0530394   254.10   0.000     13.37323    13.58121
+------------------------------------------------------------------------------
+
+. outreg2 using "\Desktop\table_section7.xls", append adjr2;
+\Desktop\table_section7.xls
+dir : seeout
+
+. test momcoll dadcoll;
+
+ ( 1)  momcoll = 0
+ ( 2)  dadcoll = 0
+
+       F(  2,  3790) =  131.86
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. exit, clear
