@@ -4,7 +4,7 @@ capture log close;
 set mem 100m;
 set more off;
 
-log using "C:\Users\chisli\Desktop\solution2.log", text replace;
+log using "\Desktop\solution2.log", text replace;
 * =================================================;
 * Chisheng Li Solution 2
 * =================================================;
