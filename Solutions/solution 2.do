@@ -11,7 +11,7 @@ log using "\Desktop\solution2.log", text replace;
 * =================================================;
 * Problem 1 - School Construction and Economic Development
 * =================================================;
-use "C:\Users\chisli\Desktop\assignment2.dta", clear;
+use "\Desktop\assignment2.dta", clear;
 
 * Q1ai) How does completed schooling vary by family income?;
 * Answer: Family income and completed schooling are positively related. Children from
