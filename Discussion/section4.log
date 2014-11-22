@@ -77,8 +77,8 @@ Linear regression                                      Number of obs =    1000
 
 end of do-file
 
-. graph export "C:\Users\chisli\Desktop\firm size.png", as(png) replace
-(note: file C:\Users\chisli\Desktop\firm size.png not found)
-(file C:\Users\chisli\Desktop\firm size.png written in PNG format)
+. graph export "\Desktop\firm size.png", as(png) replace
+(note: file \Desktop\firm size.png not found)
+(file \Desktop\firm size.png written in PNG format)
 
 . exit, clear
